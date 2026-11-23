@@ -17,7 +17,24 @@ h2{color:#087b43;font-size:19px}
 footer{text-align:center;padding:20px;color:#668}
 </style>
 </head>
-<body>
+<body><div style="padding:20px;text-align:center">
+  <h3>د ډیټابېس ازموینه</h3>
+  <button onclick="testSupabase()">Test Supabase Connection</button>
+  <p id="result"></p>
+</div>
+
+<script>
+async function testSupabase() {
+  document.getElementById("result").innerText = "Testing...";
+  const { data, error } = await supabase
+    .from("currencies")
+    .select("code,name")
+    .limit(5);
+
+  document.getElementById("result").innerText =
+    error ? error.message : "Success! " + data.length + " currencies found.";
+}
+</script> 
 <header>
 <h1>منصور ټیلیکام</h1>
 <p>ستاسو د ډیجیټل خدمتونو مرکز</p>
